@@ -5,29 +5,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { NewNote } from "./NewNote";
 import { useLocalStorage } from "./useLocalStorage";
 import { v4 as uuidV4 } from "uuid";
+import { NoteData, RawNote, Tag } from "./types";
 
-export type Note = {
-  id: string;
-} & NoteData;
-
-export type NoteData = {
-  title: string;
-  markdown: string;
-  tags: Tag[];
-};
-export type Tag = {
-  id: string;
-  label: string;
-};
-export type RawNote = {
-  id: string;
-} & RawNoteData;
-
-export type RawNoteData = {
-  title: string;
-  markdown: string;
-  tagIds: string;
-};
 function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
   const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
