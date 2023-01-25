@@ -1,9 +1,9 @@
-import { Row, Col, Form, Stack, Button } from "react-bootstrap";
-import CreatableReactSelect from "react-select/creatable";
-import { Link, useNavigate } from "react-router-dom";
-import { FormEvent, useRef, useState } from "react";
-import { v4 as uuidV4 } from "uuid";
-import { NoteFormProps, Tag } from "./types";
+import { Row, Col, Form, Stack, Button } from 'react-bootstrap';
+import CreatableReactSelect from 'react-select/creatable';
+import { Link, useNavigate } from 'react-router-dom';
+import { type FormEvent, useRef, useState } from 'react';
+import { v4 as uuidV4 } from 'uuid';
+import { type NoteFormProps, type Tag } from './types';
 
 export default function NoteForm({
   onSubmit,
@@ -22,7 +22,7 @@ export default function NoteForm({
       markdown: markdownRef.current!.value,
       tags: selectedTags,
     });
-    navigate("..");
+    navigate('..');
   }
 
   return (
@@ -30,29 +30,29 @@ export default function NoteForm({
       <Stack gap={4}>
         <Row>
           <Col>
-            <Form.Group controlId="title">
+            <Form.Group controlId='title'>
               <Form.Label>Title</Form.Label>
               <Form.Control required ref={titleRef} />
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="tags">
+            <Form.Group controlId='tags'>
               <Form.Label>Tags</Form.Label>
               <CreatableReactSelect
-                onCreateOption={(label) => {
+                onCreateOption={label => {
                   const newTag = { id: uuidV4(), label };
                   onAddTag(newTag);
-                  setSelectedTags((prev) => [...prev, newTag]);
+                  setSelectedTags(prev => [...prev, newTag]);
                 }}
-                value={selectedTags.map((tag) => {
+                value={selectedTags.map(tag => {
                   return { label: tag.label, value: tag.id };
                 })}
-                options={availableTags.map((tag) => {
+                options={availableTags.map(tag => {
                   return { label: tag.label, value: tag.id };
                 })}
-                onChange={(tags) => {
+                onChange={tags => {
                   setSelectedTags(
-                    tags.map((tag) => {
+                    tags.map(tag => {
                       return { label: tag.label, id: tag.value };
                     })
                   );
@@ -62,14 +62,14 @@ export default function NoteForm({
             </Form.Group>
           </Col>
         </Row>
-        <Form.Group controlId="markdown">
+        <Form.Group controlId='markdown'>
           <Form.Label>Body</Form.Label>
-          <Form.Control required as="textarea" ref={markdownRef} rows={15} />
+          <Form.Control required as='textarea' ref={markdownRef} rows={15} />
         </Form.Group>
-        <Stack direction="horizontal" gap={2} className="justify-content-end">
-          <Button type="submit">Save</Button>
-          <Link to="..">
-            <Button type="button" variant="outline-secondary">
+        <Stack direction='horizontal' gap={2} className='justify-content-end'>
+          <Button type='submit'>Save</Button>
+          <Link to='..'>
+            <Button type='button' variant='outline-secondary'>
               Cancel
             </Button>
           </Link>
