@@ -33,3 +33,7 @@ export interface NoteFormProps {
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
 }
+
+export interface NoteListProps {
+  availableTags: Tag[];
+}

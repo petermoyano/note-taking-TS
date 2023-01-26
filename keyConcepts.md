@@ -1,0 +1,1 @@
+- He is using useMemo() to store filteredTags in the home page. Is it worth it?
