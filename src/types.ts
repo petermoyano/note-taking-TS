@@ -37,7 +37,7 @@ export interface NoteFormProps {
   onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
-}
+} & Partial<NoteData>
 
 export interface NoteListProps {
   availableTags: Tag[];
