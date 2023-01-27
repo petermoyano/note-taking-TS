@@ -4,7 +4,7 @@ import {
   useOutletContext,
   useParams,
 } from 'react-router-dom';
-import { type NoteLayoutProps } from './types';
+import { type Note, type NoteLayoutProps } from './types';
 
 export function NoteLayout({ notes }: NoteLayoutProps) {
   const { id } = useParams();
