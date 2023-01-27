@@ -27,6 +27,11 @@ export interface NewNoteProps {
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
 }
+export interface EditNoteProps {
+  onSubmit: (id: string, data: NoteData) => void;
+  onAddTag: (tag: Tag) => void;
+  availableTags: Tag[];
+}
 
 export interface NoteFormProps {
   onSubmit: (data: NoteData) => void;
