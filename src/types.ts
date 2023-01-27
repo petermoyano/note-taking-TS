@@ -42,6 +42,8 @@ export interface NoteFormProps {
 export interface NoteListProps {
   availableTags: Tag[];
   notes: SimplifiedNote[];
+  onDeleteTag: (id: string ) => void
+  onUpdate: (id: string, label: string) => void
 }
 
 export interface SimplifiedNote {

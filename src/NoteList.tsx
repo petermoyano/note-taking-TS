@@ -14,7 +14,12 @@ import ReactSelect from 'react-select';
 import { type NoteListProps, type Tag } from './types';
 import styles from './NoteList.module.css';
 
-export function NoteList({ availableTags, notes }: NoteListProps) {
+export function NoteList({
+  availableTags,
+  notes,
+  onUpdateTag,
+  onDeleteTag,
+}: NoteListProps) {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState('');
   const [editTagsModalIsOpen, setEditTagsModalIsOpen] = useState(false);
@@ -102,6 +107,8 @@ export function NoteList({ availableTags, notes }: NoteListProps) {
           setEditTagsModalIsOpen(false);
         }}
         availableTags={availableTags}
+        onUpdateTag={onUpdateTag}
+        onDeleteTag={onDeleteTag}
       />
     </>
   );
@@ -143,6 +150,8 @@ function EditTagsModal({
   availableTags,
   handleClose,
   show,
+  onDeleteTag,
+  onUpdateTag,
 }: EditTagsModalProps) {
   return (
     <Modal show={show} onHide={handleClose}>
@@ -155,10 +164,19 @@ function EditTagsModal({
             {availableTags.map(tag => (
               <Row key={tag.id}>
                 <Col>
-                  <Form.Control type='text' value={tag.label} />
+                  <Form.Control
+                    type='text'
+                    value={tag.label}
+                    onChange={e => onUpdateTag(tag.id, e.target.value)}
+                  />
                 </Col>
                 <Col xs='auto'>
-                  <Button variant='outline-danger'>&times;</Button>
+                  <Button
+                    variant='outline-danger'
+                    onClick={() => onDeleteTag(tag.id)}
+                  >
+                    &times;
+                  </Button>
                 </Col>
               </Row>
             ))}
