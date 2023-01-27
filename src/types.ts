@@ -44,3 +44,7 @@ export interface SimplifiedNote {
   title: string;
   id: string;
 }
+
+export interface NoteLayoutProps {
+  notes: Note[];
+}
