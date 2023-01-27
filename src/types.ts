@@ -57,3 +57,9 @@ export interface NoteLayoutProps {
 export interface NoteProps {
   onDelete: (id:string) => void
 }
+
+export interface EditTagsModalProps  {
+  show: boolean
+  availableTags: Tag[]
+  handleClose: () => void
+}
