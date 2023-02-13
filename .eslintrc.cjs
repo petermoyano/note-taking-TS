@@ -21,5 +21,7 @@ module.exports = {
     project: 'tsconfig.json',
   },
   plugins: ['react'],
-  rules: {},
+  rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off',
+  },
 };
