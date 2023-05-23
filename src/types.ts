@@ -12,14 +12,18 @@ export interface Tag {
   id: string;
   label: string;
 }
-export type RawNote = {
-  id: string;
-} & RawNoteData;
-
 export interface RawNoteData {
   title: string;
   markdown: string;
   tagIds: string;
+}
+export type RawNote = {
+  id: string;
+} & RawNoteData;
+
+
+export type Theme = {
+    theme: string
 }
 
 export interface NewNoteProps {

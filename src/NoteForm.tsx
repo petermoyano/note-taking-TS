@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { type FormEvent, useRef, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { type NoteFormProps, type Tag } from './types';
+import CustomButton from './Button';
 
 export default function NoteForm({
   onSubmit,
@@ -78,9 +79,9 @@ export default function NoteForm({
         <Stack direction='horizontal' gap={2} className='justify-content-end'>
           <Button type='submit'>Save</Button>
           <Link to='..'>
-            <Button type='button' variant='outline-secondary'>
+            <CustomButton type='button' variant='outline-secondary'>
               Cancel
-            </Button>
+            </CustomButton>
           </Link>
         </Stack>
       </Stack>

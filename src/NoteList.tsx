@@ -50,7 +50,9 @@ export function NoteList({
             </Link>
             <Button
               variant='outline-secondary'
-              onClick={() => setEditTagsModalIsOpen(true)}
+              onClick={() => {
+                setEditTagsModalIsOpen(true);
+              }}
             >
               Edit Tags
             </Button>
