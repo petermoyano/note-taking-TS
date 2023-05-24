@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
-import { type NoteListProps, type Tag } from './types';
+import { EditTagsModalProps, type NoteListProps, type Tag } from './types';
 import styles from './NoteList.module.css';
 
 export function NoteList({
@@ -24,7 +24,6 @@ export function NoteList({
   const [title, setTitle] = useState('');
   const [editTagsModalIsOpen, setEditTagsModalIsOpen] = useState(false);
   const filteredNotes = useMemo(() => {
-    // @43
     return notes.filter(note => {
       return (
         (title === '' ||
@@ -70,6 +69,7 @@ export function NoteList({
                 onChange={e => {
                   setTitle(e.target.value);
                 }}
+                className='input'
               />
             </Form.Group>
           </Col>
@@ -77,6 +77,18 @@ export function NoteList({
             <Form.Group controlId='tags'>
               <Form.Label>Tags</Form.Label>
               <ReactSelect
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    background: state.isFocused
+                      ? 'var(--primary)'
+                      : 'var(--primary)',
+                  }),
+                  menu: (baseStyles, state) => ({
+                    ...baseStyles,
+                    background: 'var(--primary)',
+                  }),
+                }}
                 value={selectedTags.map(tag => {
                   return { label: tag.label, value: tag.id };
                 })}
@@ -135,7 +147,7 @@ function NoteCard({ id, title, tags }): SimplifiedNote {
               direction='horizontal'
               className='justify-content-center flex-wrap'
             >
-              {tags.map(tag => (
+              {tags.map((tag: Tag) => (
                 <Badge key={tag.id} className='text-truncate'>
                   {tag.label}
                 </Badge>
