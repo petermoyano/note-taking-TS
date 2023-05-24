@@ -14,12 +14,14 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   const buttonStyle: React.CSSProperties = {
     width: buttonWidth,
     height: buttonHeight,
-    backgroundColor: 'green',
+    backgroundColor: 'orange',
+    color: 'black',
+    fontWeight: 'bolder',
   };
 
   return (
     <Button variant='primary' style={buttonStyle}>
-      Custom Button
+      Cancel
     </Button>
   );
 };

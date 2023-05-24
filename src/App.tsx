@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useMemo } from 'react';
-import { Container } from 'react-bootstrap';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { NewNote } from './NewNote';
 import { useLocalStorage } from './useLocalStorage';
@@ -10,13 +9,11 @@ import { NoteList } from './NoteList';
 import { Note } from './Note';
 import { NoteLayout } from './NoteLayout';
 import { EditNote } from './EditNote';
-import ThemeContext from './Context/ThemeContext';
 import ContextContainer from './ContextContainer';
 
 function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>('NOTES', []);
   const [tags, setTags] = useLocalStorage<Tag[]>('TAGS', []);
-
 
   const notesWithTags = useMemo(() => {
     return notes.map(note => {
@@ -76,46 +73,45 @@ function App() {
   }
 
   return (
-
-      <ContextContainer className='my-4'>
-        <Routes>
+    <ContextContainer className='my-4'>
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <NoteList
+              availableTags={tags}
+              notes={notesWithTags}
+              onUpdateTag={updateTag}
+              onDeleteTag={deleteTag}
+            />
+          }
+        ></Route>
+        <Route
+          path='/new'
+          element={
+            <NewNote
+              onSubmit={onCreateNote}
+              onAddTag={addTag}
+              availableTags={tags}
+            />
+          }
+        ></Route>
+        <Route path='/:id' element={<NoteLayout notes={notesWithTags} />}>
+          <Route index element={<Note onDelete={onDeleteNote} />} />
           <Route
-            path='/'
+            path='edit'
             element={
-              <NoteList
-                availableTags={tags}
-                notes={notesWithTags}
-                onUpdateTag={updateTag}
-                onDeleteTag={deleteTag}
-              />
-            }
-          ></Route>
-          <Route
-            path='/new'
-            element={
-              <NewNote
-                onSubmit={onCreateNote}
+              <EditNote
+                onSubmit={onUpdateNote}
                 onAddTag={addTag}
                 availableTags={tags}
               />
             }
-          ></Route>
-          <Route path='/:id' element={<NoteLayout notes={notesWithTags} />}>
-            <Route index element={<Note onDelete={onDeleteNote} />} />
-            <Route
-              path='edit'
-              element={
-                <EditNote
-                  onSubmit={onUpdateNote}
-                  onAddTag={addTag}
-                  availableTags={tags}
-                />
-              }
-            />
-          </Route>
-          <Route path='*' element={<Navigate to='/' />}></Route>
-        </Routes>
-      </ContextContainer>
+          />
+        </Route>
+        <Route path='*' element={<Navigate to='/' />}></Route>
+      </Routes>
+    </ContextContainer>
   );
 }
 

@@ -5,6 +5,7 @@ import { type FormEvent, useRef, useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { type NoteFormProps, type Tag } from './types';
 import CustomButton from './Button';
+import './NoteForm.css';
 
 export default function NoteForm({
   onSubmit,
@@ -36,7 +37,12 @@ export default function NoteForm({
           <Col>
             <Form.Group controlId='title'>
               <Form.Label>Title</Form.Label>
-              <Form.Control required ref={titleRef} defaultValue={title} />
+              <Form.Control
+                className='input'
+                required
+                ref={titleRef}
+                defaultValue={title}
+              />
             </Form.Group>
           </Col>
           <Col>
@@ -62,6 +68,18 @@ export default function NoteForm({
                   );
                 }}
                 isMulti
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    background: state.isFocused
+                      ? 'var(--primary)'
+                      : 'var(--primary)',
+                  }),
+                  menu: (baseStyles, state) => ({
+                    ...baseStyles,
+                    background: 'var(--primary)',
+                  }),
+                }}
               />
             </Form.Group>
           </Col>
@@ -74,12 +92,15 @@ export default function NoteForm({
             defaultValue={markdown}
             ref={markdownRef}
             rows={15}
+            className='input'
           />
         </Form.Group>
         <Stack direction='horizontal' gap={2} className='justify-content-end'>
-          <Button type='submit'>Save</Button>
+          <Button type='submit' className='bg-dark'>
+            Save
+          </Button>
           <Link to='..'>
-            <CustomButton type='button' variant='outline-secondary'>
+            <CustomButton type='button' variant='outline-success'>
               Cancel
             </CustomButton>
           </Link>
