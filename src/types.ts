@@ -70,4 +70,6 @@ export interface EditTagsModalProps {
   show: boolean;
   availableTags: Tag[];
   handleClose: () => void;
+  onDeleteTag: (id: string) => void;
+  onUpdateTag: (id: string) => void;
 }
