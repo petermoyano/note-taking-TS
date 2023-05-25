@@ -7,7 +7,7 @@ export interface NoteData {
 export interface RawNoteData {
   title: string;
   markdown: string;
-  tagIds: string;
+  tagIds: string[];
 }
 
 export type RawNote = {
@@ -71,5 +71,5 @@ export interface EditTagsModalProps {
   availableTags: Tag[];
   handleClose: () => void;
   onDeleteTag: (id: string) => void;
-  onUpdateTag: (id: string) => void;
+  onUpdateTag: (id: string, label: string) => void;
 }

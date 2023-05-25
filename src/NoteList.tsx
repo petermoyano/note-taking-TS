@@ -11,7 +11,12 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
-import { EditTagsModalProps, type NoteListProps, type Tag } from './types';
+import {
+  EditTagsModalProps,
+  SimplifiedNote,
+  type NoteListProps,
+  type Tag,
+} from './types';
 import styles from './NoteList.module.css';
 
 export function NoteList({
@@ -128,7 +133,7 @@ export function NoteList({
   );
 }
 
-function NoteCard({ id, title, tags }): SimplifiedNote {
+function NoteCard({ id, title, tags }: SimplifiedNote) {
   return (
     <Card
       as={Link}
