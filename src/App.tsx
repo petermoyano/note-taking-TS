@@ -20,7 +20,7 @@ function App() {
     return notes.map(note => {
       return {
         ...note,
-        tags: tags.filter(tag => note.tagIds.includes(tag.id)),
+        tags: tags.filter(tag => note.tagIds?.includes(tag.id)),
       };
     });
   }, [notes, tags]);
