@@ -4,15 +4,16 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { NewNote } from './NewNote';
 import { useLocalStorage } from './useLocalStorage';
 import { v4 as uuidV4 } from 'uuid';
-import { type Theme, type NoteData, type RawNote, type Tag } from './types';
+import { type NoteData, type RawNote, type Tag } from './types';
 import { NoteList } from './NoteList';
 import { Note } from './Note';
 import { NoteLayout } from './NoteLayout';
 import { EditNote } from './EditNote';
 import ContextContainer from './ContextContainer';
+import finalQuestions from './Context/formattedQuestions';
 
 function App() {
-  const [notes, setNotes] = useLocalStorage<RawNote[]>('NOTES', []);
+  const [notes, setNotes] = useLocalStorage<RawNote[]>('NOTES', finalQuestions);
   const [tags, setTags] = useLocalStorage<Tag[]>('TAGS', []);
 
   const notesWithTags = useMemo(() => {

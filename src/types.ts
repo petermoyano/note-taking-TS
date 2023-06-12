@@ -7,7 +7,7 @@ export interface NoteData {
 export interface RawNoteData {
   title: string;
   markdown: string;
-  tagIds: string[];
+  tagIds?: string[];
 }
 
 export type RawNote = {
