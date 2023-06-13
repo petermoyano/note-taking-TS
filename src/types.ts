@@ -23,6 +23,10 @@ export interface Tag {
   label: string;
 }
 
+export interface RawTagData {
+  label: string;
+}
+
 export type Theme = {
   theme: string;
 };

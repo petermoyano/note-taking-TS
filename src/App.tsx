@@ -10,11 +10,14 @@ import { Note } from './Note';
 import { NoteLayout } from './NoteLayout';
 import { EditNote } from './EditNote';
 import ContextContainer from './ContextContainer';
-import finalQuestions from './Context/formattedQuestions';
+import { initialQuestions, initialTags } from './Context/formattedQuestions';
 
 function App() {
-  const [notes, setNotes] = useLocalStorage<RawNote[]>('NOTES', finalQuestions);
-  const [tags, setTags] = useLocalStorage<Tag[]>('TAGS', []);
+  const [notes, setNotes] = useLocalStorage<RawNote[]>(
+    'NOTES',
+    initialQuestions
+  );
+  const [tags, setTags] = useLocalStorage<Tag[]>('TAGS', initialTags);
 
   const notesWithTags = useMemo(() => {
     return notes.map(note => {

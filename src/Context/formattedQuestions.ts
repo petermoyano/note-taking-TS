@@ -1,5 +1,5 @@
 import { v4 as uuidV4 } from 'uuid';
-import { NoteData, RawNote, RawNoteData } from '../types';
+import { RawNoteData, RawTagData, Tag } from '../types';
 
 const formattedQuestions = [
   {
@@ -217,13 +217,7 @@ const formattedQuestions = [
   },
 ];
 
-function addIdToFormattedQuestions(
-  questions: {
-    title: string;
-    markdown: string;
-    tagIds?: string[];
-  }[]
-) {
+function addIdToFormattedQuestions(questions: RawNoteData[]) {
   const finalQuestions = [];
   for (let question of formattedQuestions) {
     finalQuestions.push({ ...question, id: uuidV4() });
@@ -231,6 +225,19 @@ function addIdToFormattedQuestions(
   return finalQuestions;
 }
 
-const finalQuestions = addIdToFormattedQuestions(formattedQuestions);
+export const formattedTags = [
+  { label: 'React' },
+  { label: 'JavaScript' },
+  { label: 'CSS' },
+];
 
-export default finalQuestions;
+function addIdToFormattedTags(tags: RawTagData[]) {
+  const finalTags = [];
+  for (let tag of tags) {
+    finalTags.push({ ...tag, id: uuidV4() });
+  }
+  return finalTags;
+}
+
+export const initialTags = addIdToFormattedTags(formattedTags);
+export const initialQuestions = addIdToFormattedQuestions(formattedQuestions);
