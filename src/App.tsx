@@ -10,6 +10,7 @@ import { Note } from './Note';
 import { NoteLayout } from './NoteLayout';
 import { EditNote } from './EditNote';
 import ContextContainer from './ContextContainer';
+import Footer from './components/Footer';
 import { initialQuestions, initialTags } from './Context/formattedQuestions';
 
 function App() {
@@ -115,6 +116,7 @@ function App() {
         </Route>
         <Route path='*' element={<Navigate to='/' />}></Route>
       </Routes>
+      <Footer />
     </ContextContainer>
   );
 }
